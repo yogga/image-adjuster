@@ -17,6 +17,8 @@ interface ImageAdjusterState {
   isProcessing: boolean;
 }
 
+const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB 
+
 export default function ImageAdjuster() {
   const [state, setState] = useState<ImageAdjusterState>({
     image: null,
@@ -73,6 +75,15 @@ export default function ImageAdjuster() {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      if (file.size > MAX_FILE_SIZE) {
+        toast({
+          title: "File Too Large",
+          description: "The image file size must not exceed 2MB.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = (event) => {
         const imageDataUrl = event.target?.result as string;
@@ -83,6 +94,13 @@ export default function ImageAdjuster() {
           brightness: 0,
         }));
         originalImageRef.current = imageDataUrl;
+      };
+      reader.onerror = () => {
+        toast({
+          title: "Error",
+          description: "Failed to read the image file. Please try again.",
+          variant: "destructive",
+        });
       };
       reader.readAsDataURL(file);
     }
@@ -145,8 +163,8 @@ export default function ImageAdjuster() {
   return (
     <Card className="max-w-md mx-auto bg-white/90 backdrop-blur-md shadow-xl rounded-xl overflow-hidden">
       <CardHeader className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6">
-        <CardTitle className="text-3xl font-bold text-center">Brightnessy</CardTitle>
-        <CardDescription className="text-center text-blue-100">Set Your Brightness Images</CardDescription>
+        <CardTitle className="text-3xl font-bold text-center">Luminous</CardTitle>
+        <CardDescription className="text-center text-blue-100">Illuminate Your Images</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6 p-6">
         <div className="flex items-center justify-center">
@@ -158,7 +176,7 @@ export default function ImageAdjuster() {
                 <div className="text-center">
                   <ImagePlus className="mx-auto h-16 w-16 text-gray-400 group-hover:text-purple-500 transition-colors duration-300" />
                   <span className="mt-2 block text-sm font-medium text-gray-900 group-hover:text-purple-500 transition-colors duration-300">
-                    Upload an image
+                    Upload an image (max 2MB)
                   </span>
                 </div>
               )}
