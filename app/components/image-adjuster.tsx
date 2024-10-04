@@ -163,8 +163,8 @@ export default function ImageAdjuster() {
   return (
     <Card className="max-w-md mx-auto bg-white/90 backdrop-blur-md shadow-xl rounded-xl overflow-hidden">
       <CardHeader className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6">
-        <CardTitle className="text-3xl font-bold text-center">Luminous</CardTitle>
-        <CardDescription className="text-center text-blue-100">Illuminate Your Images</CardDescription>
+        <CardTitle className="text-3xl font-bold text-center">Brightnessy</CardTitle>
+        <CardDescription className="text-center text-blue-100">Set Your Brightness Images</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6 p-6">
         <div className="flex items-center justify-center">
