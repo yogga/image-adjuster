@@ -17,7 +17,7 @@ interface ImageAdjusterState {
   isProcessing: boolean;
 }
 
-const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB 
+const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB in bytes
 
 export default function ImageAdjuster() {
   const [state, setState] = useState<ImageAdjusterState>({
@@ -81,6 +81,8 @@ export default function ImageAdjuster() {
           description: "The image file size must not exceed 2MB.",
           variant: "destructive",
         });
+        
+        e.target.value = '';
         return;
       }
 
@@ -164,7 +166,7 @@ export default function ImageAdjuster() {
     <Card className="max-w-md mx-auto bg-white/90 backdrop-blur-md shadow-xl rounded-xl overflow-hidden">
       <CardHeader className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6">
         <CardTitle className="text-3xl font-bold text-center">Brightnessy</CardTitle>
-        <CardDescription className="text-center text-blue-100">Set Your Brightness Images</CardDescription>
+        <CardDescription className="text-center text-blue-100">Set Your Brightness on Images</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6 p-6">
         <div className="flex items-center justify-center">
