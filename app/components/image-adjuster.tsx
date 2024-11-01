@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
-import { ImagePlus, Sun, Download, RefreshCw } from 'lucide-react'
+import { ImagePlus, Sun, Download, RefreshCw, Heart } from 'lucide-react'
 import { useToast } from "@/components/ui/use-toast"
 import { useOpenCV } from '@/lib/useOpenCV'
 
@@ -224,6 +224,12 @@ export default function ImageAdjuster() {
         <canvas ref={canvasRef} className="w-full h-auto rounded-lg shadow-lg hidden" />
         <img ref={imageRef} src={state.image || undefined} className="hidden" alt="Original" />
       </CardFooter>
+      <div className="bg-gray-100 p-4 text-center text-sm text-gray-600">
+        <p>&copy; 2024 Brightnessy. All rights reserved.</p>
+        <p className="mt-1 flex items-center justify-center">
+          Made with <Heart className="h-4 w-4 text-red-500 mx-1" /> by Arif
+        </p>
+      </div>
     </Card>
   )
 }
